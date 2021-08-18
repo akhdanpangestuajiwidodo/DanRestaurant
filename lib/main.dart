@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:dan_resto/home_screen.dart';
+import 'package:dan_resto/screens/home_screen.dart';
+import 'package:dan_resto/components/carousel/carouselcard.dart';
 
 void main() {
   runApp(MyApp());

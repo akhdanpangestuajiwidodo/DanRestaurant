@@ -1,6 +1,7 @@
 import 'package:dan_resto/model/restaurant.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:dan_resto/components/carousel/carouselcard.dart';
 
 class MainScreen extends StatelessWidget {
   @override
@@ -73,7 +74,7 @@ class MainScreen extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    child: Text("Bagian Iklan"),
+                    child: CarouselCard(),
                   ),
                 ],
               ),

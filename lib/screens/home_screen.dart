@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:dan_resto/main_screen.dart';
-import 'package:dan_resto/chart_screen.dart';
+import 'package:dan_resto/screens/main_screen.dart';
+import 'package:dan_resto/screens/chart_screen.dart';
 
 class HomeScreen extends StatefulWidget{
   HomeScreen();
