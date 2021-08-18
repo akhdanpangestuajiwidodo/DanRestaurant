@@ -6,86 +6,90 @@ import 'package:dan_resto/components/carousel/carouselcard.dart';
 class MainScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 900,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[
-          Expanded(
-            flex: 2,
-            child: Container(
-              child: Column(
-                children: <Widget>[
-                  Align(
-                    alignment: Alignment.topLeft,
-                    child: Padding(
-                      padding: const EdgeInsets.all(25.0),
+    return SingleChildScrollView(
+      child: SizedBox(
+        height: 900,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            Expanded(
+              flex: 2,
+              child: Container(
+                child: Column(
+                  children: <Widget>[
+                    Align(
+                      alignment: Alignment.topLeft,
+                      child: Padding(
+                        padding: const EdgeInsets.all(25.0),
+                        child: Text(
+                          "Dan Resto",
+                          textAlign: TextAlign.left,
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 30.0,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ),
+                    Container(
+                      width: 350.0,
+                      padding: EdgeInsets.all(0.0),
+                      child: TextField(
+                        autocorrect: true,
+                        decoration: InputDecoration(
+                          prefixIcon: Icon(
+                            Icons.search,
+                            color: Colors.white,
+                          ),
+                          hintText: "Cari Restaurant",
+                          hintStyle: TextStyle(color: Colors.white),
+                          filled: true,
+                          fillColor: Color(0xff3E3F55).withOpacity(0.4),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(12.0)),
+                            borderSide: BorderSide(
+                                color: Color(0xff3E3F55).withOpacity(0.4),
+                                width: 0),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(10.0)),
+                            borderSide: BorderSide(
+                                color: Color(0xff3E3F55).withOpacity(0.4),
+                                width: 0),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Container(
+                      alignment: Alignment.topLeft,
+                      padding: EdgeInsets.only(left: 25.0, right: 25.0),
+                      margin: EdgeInsets.only(top: 60.0),
                       child: Text(
-                        "Dan Resto",
-                        textAlign: TextAlign.left,
+                        "Promosi",
                         style: TextStyle(
                           color: Colors.white,
-                          fontSize: 30.0,
+                          fontSize: 18.0,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                     ),
-                  ),
-                  Container(
-                    width: 350.0,
-                    padding: EdgeInsets.all(0.0),
-                    child: TextField(
-                      autocorrect: true,
-                      decoration: InputDecoration(
-                        prefixIcon: Icon(
-                          Icons.search,
-                          color: Colors.white,
-                        ),
-                        hintText: "Cari Restaurant",
-                        hintStyle: TextStyle(color: Colors.white),
-                        filled: true,
-                        fillColor: Color(0xff3E3F55).withOpacity(0.4),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(12.0)),
-                          borderSide: BorderSide(
-                              color: Color(0xff3E3F55).withOpacity(0.4),
-                              width: 0),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                          borderSide: BorderSide(
-                              color: Color(0xff3E3F55).withOpacity(0.4),
-                              width: 0),
-                        ),
-                      ),
+                    Container(
+                      padding: EdgeInsets.only(top: 30),
+                      child: CarouselCard(),
                     ),
-                  ),
-                  Container(
-                    alignment: Alignment.topLeft,
-                    padding: EdgeInsets.only(left: 25.0, right: 25.0),
-                    margin: EdgeInsets.only(top: 60.0),
-                    child: Text(
-                      "Promosi",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 18.0,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                  Container(
-                    child: CarouselCard(),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
-          ),
-          Expanded(
-            flex: 2,
+            Expanded(
+              flex: 2,
               child: Container(
+                height: 300,
                 alignment: Alignment.topLeft,
                 padding: EdgeInsets.only(top: 30, bottom: 0),
-                height: 368,
                 margin: EdgeInsets.only(top: 25),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.only(
@@ -110,7 +114,7 @@ class MainScreen extends StatelessWidget {
                     ),
                     Container(
                       margin: EdgeInsets.only(top: 20.0, left: 20, right: 20),
-                      height: 298,
+                      height: 350,
                       child: FutureBuilder<String>(
                         future: DefaultAssetBundle.of(context)
                             .loadString('assets/local_restaurant.json'),
@@ -124,10 +128,11 @@ class MainScreen extends StatelessWidget {
                               return Padding(
                                 padding: const EdgeInsets.all(5.0),
                                 child: Container(
+                                  padding: EdgeInsets.only(left: 10),
                                   margin: EdgeInsets.only(bottom: 20),
                                   width: double.infinity,
                                   child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    mainAxisAlignment: MainAxisAlignment.center,
                                     children: <Widget>[
                                       Expanded(
                                         flex: 2,
@@ -141,7 +146,7 @@ class MainScreen extends StatelessWidget {
                                       Expanded(
                                         flex: 2,
                                         child: Padding(
-                                          padding: const EdgeInsets.all(10.0),
+                                          padding: EdgeInsets.all(10.0),
                                           child: Column(
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.start,
@@ -156,7 +161,13 @@ class MainScreen extends StatelessWidget {
                                               SizedBox(
                                                 height: 10,
                                               ),
-                                              Text("Lokasi : ${restaurant.city}"),
+                                              Text(
+                                                  "Lokasi : ${restaurant.city}"),
+                                              SizedBox(
+                                                height: 10,
+                                              ),
+                                              Text(
+                                                  "Rating : ${restaurant.rating}"),
                                               SizedBox(
                                                 height: 10,
                                               ),
@@ -205,7 +216,8 @@ class MainScreen extends StatelessWidget {
                 ),
               ),
             ),
-        ],
+          ],
+        ),
       ),
     );
   }

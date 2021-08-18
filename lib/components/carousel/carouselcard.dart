@@ -27,10 +27,10 @@ class _CarouselCard extends State<CarouselCard> {
             children: <Widget>[
               CarouselSlider(
                 options: CarouselOptions(
-                  height: 140.0,
+                  height: 170.0,
                   autoPlay: true,
                   autoPlayInterval: Duration(seconds: 3),
-                  autoPlayAnimationDuration: Duration(milliseconds: 800),
+                  autoPlayAnimationDuration: Duration(milliseconds: 700),
                   autoPlayCurve: Curves.fastOutSlowIn,
                   pauseAutoPlayOnTouch: true,
                   aspectRatio: 2.0,
@@ -43,14 +43,18 @@ class _CarouselCard extends State<CarouselCard> {
                 items: cardList.map((card){
                   return Builder(
                       builder:(BuildContext context){
-                        return Container(
-                          height: MediaQuery.of(context).size.height*0.4,
-                          width: MediaQuery.of(context).size.width,
-                          child: Card(
-                            color: Colors.blueAccent,
-                            child: card,
-                          ),
+                        return ClipRRect(
+                          borderRadius: BorderRadius.circular(20),
+                          child: Container(
+                            height: MediaQuery.of(context).size.height*0.4,
+                            width: MediaQuery.of(context).size.width,
+                            child: Card(
+                              color: Colors.blueAccent,
+                              child: card,
+                            ),
+                          ) ,
                         );
+
                       }
                   );
                 }).toList(),
@@ -93,7 +97,7 @@ class Item1 extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Text(
-              "Data",
+              "Melting Pot",
               style: TextStyle(
                   color: Colors.white,
                   fontSize: 22.0,
@@ -101,7 +105,7 @@ class Item1 extends StatelessWidget {
               )
           ),
           Text(
-              "Data",
+              "Discount 20%",
               style: TextStyle(
                   color: Colors.white,
                   fontSize: 17.0,
