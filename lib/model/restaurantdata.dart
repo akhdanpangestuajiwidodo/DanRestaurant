@@ -13,13 +13,5 @@ class RestaurantData {
         restaurants.add(new Restaurant.fromJson(v));
       });
     }
-
-    Map<String, dynamic> toJson() {
-      final Map<String, dynamic> data = new Map<String, dynamic>();
-      if (this.restaurants != null) {
-        data['restaurants'] = this.restaurants.map((v) => v.toJson()).toList();
-      }
-      return data;
-    }
   }
 }

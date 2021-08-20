@@ -1,8 +1,11 @@
+import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:dan_resto/screens/main_screen.dart';
-import 'package:dan_resto/screens/chart_screen.dart';
+import 'package:dan_resto/screens/favorite_screen.dart';
 
 class HomeScreen extends StatefulWidget{
+
+  static const routeName = '/home_screen';
   HomeScreen();
 
   @override
@@ -10,10 +13,12 @@ class HomeScreen extends StatefulWidget{
 }
 
 class _HomeScreen extends State<HomeScreen> {
+
   int selectedIndex = 0;
+
   final widgetOptions = [
     MainScreen(),
-    ChartScreen(),
+    FavoriteScreen(),
   ];
 
   @override
@@ -26,11 +31,21 @@ class _HomeScreen extends State<HomeScreen> {
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            title: Text("Home"),
+            label: "Home",
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.bookmark),
-            title: Text("Bookmark"),
+            icon: Badge(
+              badgeContent: Text(
+                  '${listRestaurants.length}',
+                style: TextStyle(
+                  color: Colors.white,
+                ),
+              ),
+              child: Icon(
+                  Icons.star,
+              ),
+            ),
+            label: "Favorite",
           ),
         ],
         currentIndex: selectedIndex,

@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'menu.dart';
 import 'restaurantdata.dart';
 
-
 class Restaurant{
   late String id;
   late String name;

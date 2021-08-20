@@ -1,9 +1,11 @@
 import 'package:dan_resto/model/restaurant.dart';
+import 'package:dan_resto/screens/detail_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:dan_resto/components/carousel/carouselcard.dart';
 
 class MainScreen extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -25,7 +27,7 @@ class MainScreen extends StatelessWidget {
                           "Dan Resto",
                           textAlign: TextAlign.left,
                           style: TextStyle(
-                            color: Colors.white,
+                            color: Color(0xffFEDE04),
                             fontSize: 30.0,
                             fontWeight: FontWeight.bold,
                           ),
@@ -42,7 +44,7 @@ class MainScreen extends StatelessWidget {
                             Icons.search,
                             color: Colors.white,
                           ),
-                          hintText: "Cari Restaurant",
+                          hintText: "Search the restaurant",
                           hintStyle: TextStyle(color: Colors.white),
                           filled: true,
                           fillColor: Color(0xff3E3F55).withOpacity(0.4),
@@ -68,7 +70,7 @@ class MainScreen extends StatelessWidget {
                       padding: EdgeInsets.only(left: 25.0, right: 25.0),
                       margin: EdgeInsets.only(top: 60.0),
                       child: Text(
-                        "Promosi",
+                        "Promotion",
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 18.0,
@@ -104,7 +106,7 @@ class MainScreen extends StatelessWidget {
                     Container(
                       margin: EdgeInsets.only(left: 20),
                       child: Text(
-                        "Daftar Restaurant",
+                        "List of Restaurant",
                         style: TextStyle(
                           color: Color(0xff393E5B),
                           fontSize: 18.0,
@@ -162,7 +164,8 @@ class MainScreen extends StatelessWidget {
                                                 height: 10,
                                               ),
                                               Text(
-                                                  "Lokasi : ${restaurant.city}"),
+                                                "Location : ${restaurant.city}",
+                                              ),
                                               SizedBox(
                                                 height: 10,
                                               ),
@@ -172,13 +175,22 @@ class MainScreen extends StatelessWidget {
                                                 height: 10,
                                               ),
                                               OutlinedButton(
-                                                onPressed: () {},
+                                                onPressed: () {
+                                                  Navigator.pushNamed(context, DetailScreen.routeName,
+                                                      arguments: restaurant);
+                                                },
                                                 child: Text(
-                                                  "Lihat",
+                                                  "Detail",
                                                   style: TextStyle(
                                                     fontSize: 16.0,
                                                     fontWeight: FontWeight.bold,
+                                                    color: Colors.white,
                                                   ),
+                                                ),
+                                                style: OutlinedButton.styleFrom(
+                                                  primary: Colors.white,
+                                                  backgroundColor: Color(0xffFEDE04),
+                                                  side: BorderSide(color: Color(0xffFEDE04), width: 0),
                                                 ),
                                               )
                                             ],

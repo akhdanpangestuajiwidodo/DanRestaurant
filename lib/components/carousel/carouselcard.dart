@@ -8,7 +8,7 @@ class CarouselCard extends StatefulWidget {
 class _CarouselCard extends State<CarouselCard> {
   int _currentIndex=0;
 
-  List cardList=[
+  List _cardList=[
     Item1(),
   ];
 
@@ -40,7 +40,7 @@ class _CarouselCard extends State<CarouselCard> {
                     });
                   },
                 ),
-                items: cardList.map((card){
+                items: _cardList.map((card){
                   return Builder(
                       builder:(BuildContext context){
                         return ClipRRect(
@@ -61,7 +61,7 @@ class _CarouselCard extends State<CarouselCard> {
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
-                children: map<Widget>(cardList, (index, url) {
+                children: map<Widget>(_cardList, (index, url) {
                   return Container(
                     width: 10.0,
                     height: 10.0,
@@ -89,8 +89,8 @@ class Item1 extends StatelessWidget {
         gradient: LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
-            stops: [0.3, 1],
-            colors: [Color(0xffff4000),Color(0xffffcc66),]
+            stops: [0.0, 0.8],
+            colors: [Color(0xffFEE430),Color(0xffFE4D82),]
         ),
       ),
       child: Column(
