@@ -2,7 +2,7 @@ import 'package:dan_resto/components/menus/foodwidget.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:dan_resto/model/restaurant.dart';
+import 'package:dan_resto/data/model/restaurant.dart';
 import 'package:dan_resto/components/button/dynamicbutton.dart';
 import 'package:dan_resto/components/menus/drinkwidget.dart';
 

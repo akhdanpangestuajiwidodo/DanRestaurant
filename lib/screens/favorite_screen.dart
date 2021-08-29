@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:dan_resto/model/restaurant.dart';
+import 'package:dan_resto/data/model/restaurant.dart';
 
 List<Restaurant> listRestaurants = [];
 
@@ -38,27 +38,27 @@ class _FavoriteScreen extends State<FavoriteScreen> {
                           ),
                         ),
                         Container(
-                          child: Column(
-                            children: [
-                              Image.asset(
-                                'assets/logo.png',
-                                width: 64,
-                                height: 64,
-                              ),
-                              SizedBox(
-                                height: 24.0,
-                              ),
-                              Text(
-                                "Favorite Restaurant",
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 28.0,
-                                  fontWeight: FontWeight.bold,
+                            child: Column(
+                              children: [
+                                Image.asset(
+                                  'assets/logo.png',
+                                  width: 64,
+                                  height: 64,
                                 ),
-                              ),
-                            ],
-                          )
+                                SizedBox(
+                                  height: 24.0,
+                                ),
+                                Text(
+                                  "Favorite Restaurant",
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 28.0,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ],
+                            )
                         ),
                       ],
                     ),
@@ -74,10 +74,11 @@ class _FavoriteScreen extends State<FavoriteScreen> {
                       ),
                       color: Colors.white,
                     ),
-                    child: 
+                    child:
                     Padding(
                       padding: const EdgeInsets.all(30.0),
-                      child: ListView.builder(
+                      child: _listRestaurantsNew.isNotEmpty
+                          ?ListView.builder(
                         scrollDirection: Axis.vertical,
                         itemBuilder: (BuildContext context, int index) {
                           final Restaurant restaurant = _listRestaurantsNew[index];
@@ -168,7 +169,7 @@ class _FavoriteScreen extends State<FavoriteScreen> {
                           );
                         },
                         itemCount: listRestaurants.length,
-                      ),
+                      ) : Center(child: Text('Daftar Favorit Kosong'),),
                     ),
                   ),
                 ),

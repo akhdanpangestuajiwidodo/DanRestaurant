@@ -1,4 +1,4 @@
-import 'package:dan_resto/model/restaurant.dart';
+import 'package:dan_resto/data/model/restaurant.dart';
 
 class RestaurantData {
   late List<Restaurant> restaurants;

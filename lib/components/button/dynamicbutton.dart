@@ -1,6 +1,6 @@
 import 'package:dan_resto/screens/favorite_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:dan_resto/model/restaurant.dart';
+import 'package:dan_resto/data/model/restaurant.dart';
 
 class DynamicButton extends StatefulWidget {
   final Restaurant restaurant;

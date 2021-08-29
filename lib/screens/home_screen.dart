@@ -14,7 +14,7 @@ class HomeScreen extends StatefulWidget{
 
 class _HomeScreen extends State<HomeScreen> {
 
-  int selectedIndex = 0;
+  int _selectedIndex = 0;
 
   final widgetOptions = [
     MainScreen(),
@@ -25,7 +25,7 @@ class _HomeScreen extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: widgetOptions.elementAt(selectedIndex),
+        child: widgetOptions.elementAt(_selectedIndex),
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: <BottomNavigationBarItem>[
@@ -36,19 +36,19 @@ class _HomeScreen extends State<HomeScreen> {
           BottomNavigationBarItem(
             icon: Badge(
               badgeContent: Text(
-                  '${listRestaurants.length}',
+                '${listRestaurants.length}',
                 style: TextStyle(
                   color: Colors.white,
                 ),
               ),
               child: Icon(
-                  Icons.star,
+                Icons.star,
               ),
             ),
             label: "Favorite",
           ),
         ],
-        currentIndex: selectedIndex,
+        currentIndex: _selectedIndex,
         fixedColor: Colors.deepPurple,
         onTap: onItemTapped,
       ),
@@ -57,7 +57,7 @@ class _HomeScreen extends State<HomeScreen> {
 
   void onItemTapped(int index) {
     setState(() {
-      selectedIndex = index;
+      _selectedIndex = index;
     });
   }
 }

@@ -1,6 +1,6 @@
 import 'package:dan_resto/screens/splashscreen.dart';
 import 'package:flutter/material.dart';
-import 'package:dan_resto/model/restaurant.dart';
+import 'package:dan_resto/data/model/restaurant.dart';
 import 'package:dan_resto/screens/home_screen.dart';
 import 'package:dan_resto/screens/detail_screen.dart';
 import 'package:dan_resto/screens/favorite_screen.dart';

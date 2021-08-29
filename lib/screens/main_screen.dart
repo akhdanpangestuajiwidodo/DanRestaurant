@@ -1,4 +1,4 @@
-import 'package:dan_resto/model/restaurant.dart';
+import 'package:dan_resto/data/model/restaurant.dart';
 import 'package:dan_resto/screens/detail_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -50,14 +50,14 @@ class MainScreen extends StatelessWidget {
                           fillColor: Color(0xff3E3F55).withOpacity(0.4),
                           enabledBorder: OutlineInputBorder(
                             borderRadius:
-                                BorderRadius.all(Radius.circular(12.0)),
+                            BorderRadius.all(Radius.circular(12.0)),
                             borderSide: BorderSide(
                                 color: Color(0xff3E3F55).withOpacity(0.4),
                                 width: 0),
                           ),
                           focusedBorder: OutlineInputBorder(
                             borderRadius:
-                                BorderRadius.all(Radius.circular(10.0)),
+                            BorderRadius.all(Radius.circular(10.0)),
                             borderSide: BorderSide(
                                 color: Color(0xff3E3F55).withOpacity(0.4),
                                 width: 0),
@@ -118,12 +118,11 @@ class MainScreen extends StatelessWidget {
                       margin: EdgeInsets.only(top: 20.0, left: 20, right: 20),
                       height: 350,
                       child: FutureBuilder<String>(
-                        future: DefaultAssetBundle.of(context)
-                            .loadString('assets/local_restaurant.json'),
+                        future: DefaultAssetBundle.of(context).loadString('assets/local_restaurant.json'),
                         builder: (context, snapshot) {
-                          final List<Restaurant> restaurants =
-                              parseRestaurant(snapshot.data);
-                          return ListView.builder(
+                          final List<Restaurant> restaurants = parseRestaurant(snapshot.data);
+                          return (snapshot.hasData || snapshot.data != null)
+                              ?ListView.builder(
                             scrollDirection: Axis.vertical,
                             itemBuilder: (context, index) {
                               final Restaurant restaurant = restaurants[index];
@@ -140,7 +139,7 @@ class MainScreen extends StatelessWidget {
                                         flex: 2,
                                         child: ClipRRect(
                                           borderRadius:
-                                              BorderRadius.circular(8.0),
+                                          BorderRadius.circular(8.0),
                                           child: Image.network(
                                               restaurant.urlPicture),
                                         ),
@@ -151,7 +150,7 @@ class MainScreen extends StatelessWidget {
                                           padding: EdgeInsets.all(10.0),
                                           child: Column(
                                             crossAxisAlignment:
-                                                CrossAxisAlignment.start,
+                                            CrossAxisAlignment.start,
                                             children: <Widget>[
                                               Text(
                                                 restaurant.name,
@@ -220,7 +219,7 @@ class MainScreen extends StatelessWidget {
                               );
                             },
                             itemCount: restaurants.length,
-                          );
+                          ) : Center(child: Text('No Data Found'),);
                         },
                       ),
                     ),
