@@ -1,4 +1,7 @@
 import 'package:badges/badges.dart';
+import 'package:dan_resto/screens/detail_screen.dart';
+import 'package:dan_resto/screens/settings_page.dart';
+import 'package:dan_resto/utils/notificationhelper.dart';
 import 'package:flutter/material.dart';
 import 'package:dan_resto/screens/main_screen.dart';
 import 'package:dan_resto/screens/favorite_screen.dart';
@@ -13,12 +16,19 @@ class HomeScreen extends StatefulWidget{
 }
 
 class _HomeScreen extends State<HomeScreen> {
+  final NotificationHelper _notificationHelper = NotificationHelper();
+
+  void initState() {
+    super.initState();
+    _notificationHelper.configureSelectedNotificationSubject(DetailScreen.routeName, context);
+  }
 
   int _selectedIndex = 0;
 
   final widgetOptions = [
     MainScreen(),
     FavoriteScreen(),
+    SettingsPage()
   ];
 
   @override
@@ -47,6 +57,10 @@ class _HomeScreen extends State<HomeScreen> {
             ),
             label: "Favorite",
           ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.settings),
+            label: "Setting",
+          ),
         ],
         currentIndex: _selectedIndex,
         fixedColor: Colors.deepPurple,
@@ -59,5 +73,11 @@ class _HomeScreen extends State<HomeScreen> {
     setState(() {
       _selectedIndex = index;
     });
+  }
+
+  @override
+  void dispose() {
+    selectNotificationSubject.close();
+    super.dispose();
   }
 }

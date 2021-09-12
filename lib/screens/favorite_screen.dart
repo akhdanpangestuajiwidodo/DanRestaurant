@@ -1,7 +1,7 @@
+import 'package:dan_resto/data/model/detailrestaurant.dart';
 import 'package:flutter/material.dart';
-import 'package:dan_resto/data/model/restaurant.dart';
 
-List<Restaurant> listRestaurants = [];
+List<DetailRestaurant> listRestaurants = [];
 
 class FavoriteScreen extends StatefulWidget {
 
@@ -12,7 +12,7 @@ class FavoriteScreen extends StatefulWidget {
 }
 
 class _FavoriteScreen extends State<FavoriteScreen> {
-  List<Restaurant> _listRestaurantsNew = listRestaurants;
+  List<DetailRestaurant> _listRestaurantsNew = listRestaurants;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -77,11 +77,10 @@ class _FavoriteScreen extends State<FavoriteScreen> {
                     child:
                     Padding(
                       padding: const EdgeInsets.all(30.0),
-                      child: _listRestaurantsNew.isNotEmpty
-                          ?ListView.builder(
+                      child: _listRestaurantsNew.isNotEmpty ?ListView.builder(
                         scrollDirection: Axis.vertical,
                         itemBuilder: (BuildContext context, int index) {
-                          final Restaurant restaurant = _listRestaurantsNew[index];
+                          final DetailRestaurant restaurant = _listRestaurantsNew[index];
                           return Padding(
                             padding: const EdgeInsets.all(5.0),
                             child:
@@ -98,7 +97,7 @@ class _FavoriteScreen extends State<FavoriteScreen> {
                                       borderRadius:
                                       BorderRadius.circular(8.0),
                                       child: Image.network(
-                                          restaurant.urlPicture),
+                                          restaurant.getImage()),
                                     ),
                                   ),
                                   Expanded(
@@ -119,7 +118,7 @@ class _FavoriteScreen extends State<FavoriteScreen> {
                                           SizedBox(
                                             height: 10,
                                           ),
-                                          Text("oleh ${restaurant.city}"),
+                                          Text("by ${restaurant.city}"),
                                           SizedBox(
                                             height: 10,
                                           ),
@@ -169,7 +168,7 @@ class _FavoriteScreen extends State<FavoriteScreen> {
                           );
                         },
                         itemCount: listRestaurants.length,
-                      ) : Center(child: Text('Daftar Favorit Kosong'),),
+                      ) : Center(child: Text('Favorite Restaurant is empty'),),
                     ),
                   ),
                 ),

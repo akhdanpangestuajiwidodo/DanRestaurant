@@ -1,9 +1,9 @@
+import 'package:dan_resto/data/model/detailrestaurant.dart';
 import 'package:dan_resto/screens/favorite_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:dan_resto/data/model/restaurant.dart';
 
 class DynamicButton extends StatefulWidget {
-  final Restaurant restaurant;
+  final DetailRestaurant restaurant;
 
   const DynamicButton({required this.restaurant});
 
@@ -21,7 +21,6 @@ class _DynamicButton extends State<DynamicButton>{
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: () {
-        print("${widget.restaurant.menu.drinks}");
         setState(() {
           _changeText = "Saved";
           _buttonColor = Color(0xffFEDE04);
