@@ -1,5 +1,4 @@
 import 'package:dan_resto/data/api/api_service.dart';
-import 'package:dan_resto/data/model/customerreview.dart';
 import 'package:dan_resto/data/model/reviewresult.dart';
 import 'package:flutter/cupertino.dart';
 

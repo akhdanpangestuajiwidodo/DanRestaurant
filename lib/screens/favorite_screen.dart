@@ -124,9 +124,9 @@ class _FavoriteScreen extends State<FavoriteScreen> {
                                           ),
                                           ElevatedButton(
                                             onPressed: () {
-                                              print(listRestaurants.removeAt(index));
+                                              listRestaurants.removeAt(index);
                                               setState(() {
-                                                _listRestaurantsNew;
+
                                               });
                                             },
                                             child: Text(

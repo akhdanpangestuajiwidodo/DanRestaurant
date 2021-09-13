@@ -86,7 +86,7 @@ class _DetailScreen extends State<DetailScreen> {
                             DefaultTabController(
                               length: 2,
                               child: SizedBox(
-                                height: 770.0,
+                                height: MediaQuery.of(context).size.height / 1,
                                 child: Column(
                                   children: <Widget>[
                                     TabBar(
@@ -108,7 +108,7 @@ class _DetailScreen extends State<DetailScreen> {
                                           Container(
                                             child: Column(
                                               children: [
-                                                Container(
+                                                Expanded(child: Container(
                                                   margin: EdgeInsets.only(top: 20.0),
                                                   child: Text(
                                                     restaurant.restaurant.name,
@@ -118,7 +118,7 @@ class _DetailScreen extends State<DetailScreen> {
                                                       fontWeight: FontWeight.w500,
                                                     ),
                                                   ),
-                                                ),
+                                                ),),
                                                 Container(
                                                   margin: EdgeInsets.symmetric(vertical: 16.0),
                                                   child: Row(
@@ -154,6 +154,8 @@ class _DetailScreen extends State<DetailScreen> {
                                                     ],
                                                   ),
                                                 ),
+
+
                                                 Container(
                                                     padding: EdgeInsets.all(16.0),
                                                     child: Column(
@@ -251,12 +253,16 @@ class _DetailScreen extends State<DetailScreen> {
                                                     foods: restaurant.restaurant.menus.foods,
                                                   ),
                                                 ),
+                                                Container(
+                                                  padding: EdgeInsets.all(16.0),
+                                                  child: DynamicButton(restaurant: restaurant.restaurant),
+                                                ),
                                               ],
                                             ),
                                           ),
                                           Container(
                                             child:  Container(
-                                              height: 50,
+                                              height: 10,
                                               child: CardReview(reviews: restaurant.restaurant.customerReviews, id: restaurant.restaurant.id),
                                             ),
                                           ),
@@ -267,11 +273,6 @@ class _DetailScreen extends State<DetailScreen> {
                                 ),
                               ),
                             ),
-                        ),
-                        Container(
-                          padding: EdgeInsets.all(16.0),
-                          width: 10,
-                          child: DynamicButton(restaurant: restaurant.restaurant),
                         ),
                       ],
                 );
