@@ -86,7 +86,7 @@ class _DetailScreen extends State<DetailScreen> {
                             DefaultTabController(
                               length: 2,
                               child: SizedBox(
-                                height: MediaQuery.of(context).size.height / 1,
+                                height: MediaQuery.of(context).size.height * 1,
                                 child: Column(
                                   children: <Widget>[
                                     TabBar(
@@ -105,10 +105,10 @@ class _DetailScreen extends State<DetailScreen> {
                                     Expanded(
                                       child: TabBarView(
                                         children: <Widget>[
-                                          Container(
+                                          SingleChildScrollView(
                                             child: Column(
                                               children: [
-                                                Expanded(child: Container(
+                                                Container(
                                                   margin: EdgeInsets.only(top: 20.0),
                                                   child: Text(
                                                     restaurant.restaurant.name,
@@ -118,7 +118,7 @@ class _DetailScreen extends State<DetailScreen> {
                                                       fontWeight: FontWeight.w500,
                                                     ),
                                                   ),
-                                                ),),
+                                                ),
                                                 Container(
                                                   margin: EdgeInsets.symmetric(vertical: 16.0),
                                                   child: Row(
@@ -154,8 +154,6 @@ class _DetailScreen extends State<DetailScreen> {
                                                     ],
                                                   ),
                                                 ),
-
-
                                                 Container(
                                                     padding: EdgeInsets.all(16.0),
                                                     child: Column(

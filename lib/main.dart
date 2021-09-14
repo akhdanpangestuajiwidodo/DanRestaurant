@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:android_alarm_manager/android_alarm_manager.dart';
 import 'package:dan_resto/screens/splashscreen.dart';
 import 'package:dan_resto/utils/notificationhelper.dart';
@@ -36,7 +35,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: "Dan Resto",
+           title: "Dan Resto",
       theme: ThemeData(
         scaffoldBackgroundColor: Color(0xff6B45BC),
       ),

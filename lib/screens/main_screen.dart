@@ -99,7 +99,7 @@ class _MainScreen extends State<MainScreen> {
                         ),
                       ),
                       Container(
-                        padding: EdgeInsets.only(top: 30),
+                        padding: EdgeInsets.only(top: 20.0),
                         child: CarouselCard(),
                       ),
                     ],
