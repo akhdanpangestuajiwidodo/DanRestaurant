@@ -46,7 +46,7 @@ class _HomeScreen extends State<HomeScreen> {
           BottomNavigationBarItem(
             icon: Badge(
               badgeContent: Text(
-                '${listRestaurants.length}',
+                '0',
                 style: TextStyle(
                   color: Colors.white,
                 ),

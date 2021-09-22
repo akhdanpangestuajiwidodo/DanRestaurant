@@ -1,18 +1,10 @@
-import 'package:dan_resto/data/model/detailrestaurant.dart';
+import 'package:dan_resto/components/card/cardrestaurant.dart';
+import 'package:dan_resto/provider/databaseprovider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-List<DetailRestaurant> listRestaurants = [];
-
-class FavoriteScreen extends StatefulWidget {
-
+class FavoriteScreen extends StatelessWidget {
   static const routeName = '/favorite_screen';
-
-  @override
-  _FavoriteScreen createState() => _FavoriteScreen();
-}
-
-class _FavoriteScreen extends State<FavoriteScreen> {
-  List<DetailRestaurant> _listRestaurantsNew = listRestaurants;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,27 +31,26 @@ class _FavoriteScreen extends State<FavoriteScreen> {
                         ),
                         Container(
                             child: Column(
-                              children: [
-                                Image.asset(
-                                  'assets/logo.png',
-                                  width: 64,
-                                  height: 64,
-                                ),
-                                SizedBox(
-                                  height: 24.0,
-                                ),
-                                Text(
-                                  "Favorite Restaurant",
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 28.0,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ],
-                            )
-                        ),
+                          children: [
+                            Image.asset(
+                              'assets/logo.png',
+                              width: 64,
+                              height: 64,
+                            ),
+                            SizedBox(
+                              height: 24.0,
+                            ),
+                            Text(
+                              "Favorite Restaurant",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 28.0,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ],
+                        )),
                       ],
                     ),
                   ),
@@ -74,101 +65,59 @@ class _FavoriteScreen extends State<FavoriteScreen> {
                       ),
                       color: Colors.white,
                     ),
-                    child:
-                    Padding(
+                    child: Padding(
                       padding: const EdgeInsets.all(30.0),
-                      child: _listRestaurantsNew.isNotEmpty ?ListView.builder(
-                        scrollDirection: Axis.vertical,
-                        itemBuilder: (BuildContext context, int index) {
-                          final DetailRestaurant restaurant = _listRestaurantsNew[index];
-                          return Padding(
-                            padding: const EdgeInsets.all(5.0),
-                            child:
-                            Container(
-                              padding: EdgeInsets.only(left: 10),
-                              margin: EdgeInsets.only(bottom: 20),
-                              width: double.infinity,
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: <Widget>[
-                                  Expanded(
-                                    flex: 2,
-                                    child: ClipRRect(
-                                      borderRadius:
-                                      BorderRadius.circular(8.0),
-                                      child: Image.network(
-                                          restaurant.getImage()),
-                                    ),
-                                  ),
-                                  Expanded(
-                                    flex: 2,
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(10.0),
-                                      child: Column(
-                                        crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                        children: <Widget>[
-                                          Text(
-                                            restaurant.name,
-                                            style: TextStyle(
-                                              fontSize: 16.0,
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                          ),
-                                          SizedBox(
-                                            height: 10,
-                                          ),
-                                          Text("by ${restaurant.city}"),
-                                          SizedBox(
-                                            height: 10,
-                                          ),
-                                          ElevatedButton(
-                                            onPressed: () {
-                                              listRestaurants.removeAt(index);
-                                              setState(() {
-
-                                              });
-                                            },
-                                            child: Text(
-                                              "Delete",
-                                              style: TextStyle(
-                                                fontSize: 16.0,
-                                                fontWeight: FontWeight.bold,
-                                                color: Colors.white,
-                                              ),
-                                            ),
-                                            style: ElevatedButton.styleFrom(
-                                              primary: Colors.red,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ],
+                      child: Consumer<DatabaseProvider>(
+                          builder: (context, provider, child) {
+                        if (provider.state == DbState.Loading) {
+                          return Center(child: CircularProgressIndicator());
+                        } else {
+                          if (provider.state == DbState.HasData) {
+                            return ListView.builder(
+                              shrinkWrap: true,
+                              itemCount: provider.favRestaurant.length,
+                              itemBuilder: (context, index) {
+                                final restaurantElement = provider.favRestaurant[index];
+                                return CardRestaurant(
+                                    restaurant: restaurantElement);
+                              },
+                            );
+                          } else if (provider.state == DbState.NoHasData) {
+                            return SizedBox(
+                              height: MediaQuery.of(context).size.height * 0.5,
+                              child: Center(
+                                child: Text(
+                                  provider.message,
+                                ),
                               ),
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(10),
-                                    topRight: Radius.circular(10),
-                                    bottomLeft: Radius.circular(10),
-                                    bottomRight: Radius.circular(10)),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.grey.withOpacity(0.3),
-                                    spreadRadius: 1,
-                                    blurRadius: 9,
-                                    offset: Offset(
-                                        0, 0), // changes position of shadow
+                            );
+                          } else {
+                            return Column(
+                              children: [
+                                Center(
+                                  child: Image.asset(
+                                    'images/no_connection_image.png',
+                                    width: 150,
+                                    height: 200,
                                   ),
-                                ],
-                              ),
-                            ),
-                          );
-                        },
-                        itemCount: listRestaurants.length,
-                      ) : Center(child: Text('Favorite Restaurant is empty'),),
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.symmetric(
+                                    horizontal: 16.0,
+                                  ),
+                                  child: Text(
+                                    provider.message,
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ),
+                              ],
+                            );
+                          }
+                        }
+                      }),
                     ),
                   ),
                 ),

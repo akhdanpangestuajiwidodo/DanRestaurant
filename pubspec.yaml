@@ -36,6 +36,8 @@ dependencies:
   android_alarm_manager: ^2.0.0
   flutter_local_notifications: ^8.1.1+1
   rxdart: ^0.26.0
+  sqflite: ^2.0.0+3
+  shared_preferences: ^2.0.6
 
 dev_dependencies:
   flutter_test:
