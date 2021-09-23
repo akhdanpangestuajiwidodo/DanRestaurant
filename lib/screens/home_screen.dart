@@ -1,4 +1,7 @@
 import 'package:badges/badges.dart';
+import 'package:dan_resto/screens/detail_screen.dart';
+import 'package:dan_resto/screens/settings_page.dart';
+import 'package:dan_resto/utils/notificationhelper.dart';
 import 'package:flutter/material.dart';
 import 'package:dan_resto/screens/main_screen.dart';
 import 'package:dan_resto/screens/favorite_screen.dart';
@@ -13,19 +16,26 @@ class HomeScreen extends StatefulWidget{
 }
 
 class _HomeScreen extends State<HomeScreen> {
+  final NotificationHelper _notificationHelper = NotificationHelper();
 
-  int selectedIndex = 0;
+  void initState() {
+    super.initState();
+    _notificationHelper.configureSelectedNotificationSubject(DetailScreen.routeName, context);
+  }
+
+  int _selectedIndex = 0;
 
   final widgetOptions = [
     MainScreen(),
     FavoriteScreen(),
+    SettingsPage()
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: widgetOptions.elementAt(selectedIndex),
+        child: widgetOptions.elementAt(_selectedIndex),
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: <BottomNavigationBarItem>[
@@ -36,19 +46,23 @@ class _HomeScreen extends State<HomeScreen> {
           BottomNavigationBarItem(
             icon: Badge(
               badgeContent: Text(
-                  '${listRestaurants.length}',
+                '0',
                 style: TextStyle(
                   color: Colors.white,
                 ),
               ),
               child: Icon(
-                  Icons.star,
+                Icons.star,
               ),
             ),
             label: "Favorite",
           ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.settings),
+            label: "Setting",
+          ),
         ],
-        currentIndex: selectedIndex,
+        currentIndex: _selectedIndex,
         fixedColor: Colors.deepPurple,
         onTap: onItemTapped,
       ),
@@ -57,7 +71,13 @@ class _HomeScreen extends State<HomeScreen> {
 
   void onItemTapped(int index) {
     setState(() {
-      selectedIndex = index;
+      _selectedIndex = index;
     });
+  }
+
+  @override
+  void dispose() {
+    selectNotificationSubject.close();
+    super.dispose();
   }
 }

@@ -1,14 +1,14 @@
 import 'food.dart';
 import 'drink.dart';
 
-class Menu {
+class Menus {
   late List<Food> foods;
   late List<Drink> drinks;
 
 
-  Menu(this.foods, this.drinks);
+  Menus(this.foods, this.drinks);
 
-  Menu.fromJson(Map<String, dynamic> menu) {
+  Menus.fromJson(Map<String, dynamic> menu) {
     if (menu['foods'] != null) {
       foods = <Food>[];
       menu['foods'].forEach((v) {

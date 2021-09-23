@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:dan_resto/model/drink.dart';
+import 'package:dan_resto/data/model/drink.dart';
 
 class DrinkWidget extends StatelessWidget {
   final List<Drink> drinks;
