@@ -1,4 +1,4 @@
-import 'package:dan_resto/components/card/CardRestaurant.dart';
+import 'package:dan_resto/components/card/cardrestaurant.dart';
 import 'package:dan_resto/data/api/api_service.dart';
 import 'package:dan_resto/provider/restaurantprovider.dart';
 import 'package:flutter/cupertino.dart';

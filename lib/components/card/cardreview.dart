@@ -1,6 +1,6 @@
 import 'package:dan_resto/data/api/api_service.dart';
 import 'package:dan_resto/data/model/customerreview.dart';
-import 'package:dan_resto/provider/ReviewProvider.dart';
+import 'package:dan_resto/provider/reviewprovider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
